@@ -1,0 +1,41 @@
+name: CI - LogiTrack
+
+# ¿Cuándo se ejecuta?
+on:
+  pull_request:
+    branches: [ main, develop ]           # cada vez que abrís un PR hacia main
+
+# Los trabajos a ejecutar
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest        
+
+    steps:
+
+      #1
+      - name: Descargar el repositorio a la VM
+        uses: actions/checkout@v4
+
+      #2  
+      - name: Instala Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12.0"
+
+      #3    
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      #4
+      - name: Linter con flake8
+        run: |
+          flake8 src/ml/
+
+      #5
+      - name: Generar dataset de entrenamiento
+        run: |
+          python src/ml/generar_dataset.py
+
+      #test verificando el ML
