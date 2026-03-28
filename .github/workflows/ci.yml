@@ -32,7 +32,7 @@ jobs:
       #4
       - name: Linter con flake8
         run: |
-          flake8 src/ml/
+          flake8 src/ml/ --max-line-length=120
 
       #5
       - name: Generar dataset de entrenamiento
