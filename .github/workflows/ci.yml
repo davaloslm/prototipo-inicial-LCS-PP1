@@ -1,7 +1,8 @@
 name: CI - LogiTrack
 
-# ¿Cuándo se ejecuta?
 on:
+  push:
+    branches: [ machine-learning]
   pull_request:
     branches: [ main, develop ]           # cada vez que abrís un PR hacia main
 
