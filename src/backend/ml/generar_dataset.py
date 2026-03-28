@@ -2,23 +2,23 @@ import pandas as pd
 import numpy as np
 # import random
 
-# random.seed(1)
-# np.random.seed(1)
+# Definimos la cantidad de envíos simulados
+num_envios = 500
 
-cant_envios = 500  # cantidad de envíos simulados
-
+# Generamos datos aleatorios para las features requeridas
 data = {
-    "distancia_km": np.random.randint(10, 1000, cant_envios),
-    "tipo_envio": np.random.choice(["normal", "express"], cant_envios),
-    "peso_kg": np.round(np.random.uniform(0.5, 50.0, cant_envios), 2), # Peso
-    "volumen": np.random.randint(100, 50000, cant_envios), # dimensiones= alto_cm * ancho_cm * largo_cm
-    "es_fragil": np.random.choice([0, 1], cant_envios),
-    "requiere_frio": np.random.choice([0, 1], cant_envios),
-    "saturacion_ruta": np.random.randint(1, 11, cant_envios),  # 1=libre, 10=saturada
+    "distancia_km": np.random.randint(10, 1000, num_envios),
+    "tipo_envio": np.random.choice(["normal", "express"], num_envios),
+    "peso_kg": np.round(np.random.uniform(0.5, 50.0, num_envios), 2), # Peso
+    "volumen": np.random.randint(100, 50000, num_envios), # dimensiones= alto_cm * ancho_cm * largo_cm
+    "es_fragil": np.random.choice([0, 1], num_envios),
+    "requiere_frio": np.random.choice([0, 1], num_envios),
+    "saturacion_ruta": np.random.randint(1, 11, num_envios),  # 1=libre, 10=saturada
 }
 
 df = pd.DataFrame(data)
 
+# Función lógica para asignar la prioridad y que el modelo tenga algo que "aprender"
 # Regla para asignar prioridad (lógica de negocio simulada)
 def asignar_prioridad(row):
     puntaje = 0
@@ -60,9 +60,12 @@ def asignar_prioridad(row):
     # -Media si tiene entre 3 y 5 puntos
     # -Baja si tiene menos o igual que 2 puntos
 
-df["prioridad"] = df.apply(asignar_prioridad, axis=1)
-df.to_csv("dataset_envios.csv", index=False)
+# Aplicamos la lógica para crear la columna objetivo (Target)
+df['prioridad'] = df.apply(asignar_prioridad, axis=1)
 
+# Guardamos el dataset inventado en un CSV
+df.to_csv('dataset_envios.csv', index=False)
+print("¡Dataset generado con éxito en 'dataset_envios.csv'!")
 
 print(df["prioridad"].value_counts())
 print(df.head())
