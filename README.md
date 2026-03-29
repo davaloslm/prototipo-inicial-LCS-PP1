@@ -1,24 +1,18 @@
-# LogiTrack 📦
+# LogiTrack 
 Sistema web de gestión de envíos logísticos que permite registrar, buscar y hacer seguimiento de paquetes de manera eficiente.
 En nuestra plataforma, los operadores pueden crear nuevos envíos con toda la información necesaria, buscar por Tracking ID o destinatario, y consultar el estado de cada paquete en tiempo real.
 Además, LogiTrack incorpora un módulo de inteligencia artificial que predice automáticamente la prioridad de cada envío según sus características, optimizando la toma de decisiones logísticas.
 
 ## Despliegue 📦
 
-### API Predictiva:
+
 Documentación interactiva -> [Swagger UI](http://)
-
-_Para el despliegue del proyecto se utilizaron las siguientes herramientas:_
-
-| Mock API (envíos) | [MockAPI.io](https://mockapi.io/) |
-| ----------------- | --------------------------------- |
-| API Predictiva (Python) | [Uvicorn + FastAPI](https://fastapi.tiangolo.com/) |
 
 ## Construido con 🛠️
 
 #### Frontend:
 * Lenguaje -> HTML5 + JavaScript
-* Framework CSS -> [Bootstrap 5.3](https://getbootstrap.com/)
+* Framework CSS -> [Bootstrap](https://getbootstrap.com/)
 * Íconos -> [Material Symbols](https://fonts.google.com/icons)
 
 #### Backend:
@@ -26,7 +20,11 @@ _Para el despliegue del proyecto se utilizaron las siguientes herramientas:_
 * Framework -> [FastAPI](https://fastapi.tiangolo.com/)
 * Servidor -> [Uvicorn](https://www.uvicorn.org/)
 * Validación de datos -> [Pydantic](https://docs.pydantic.dev/)
-* Mock API externa -> [MockAPI.io](https://mockapi.io/)
+* Mock API  -> [MockAPI.io](https://mockapi.io/)
+
+#### APIs:
+* Mock API (envíos)  [MockAPI.io](https://mockapi.io/) 
+* API Predictiva (Python)  [Uvicorn + FastAPI](https://fastapi.tiangolo.com/) 
 
 #### Machine Learning:
 * Modelo -> Random Forest Classifier
@@ -36,7 +34,7 @@ _Para el despliegue del proyecto se utilizaron las siguientes herramientas:_
 
 ## Módulo de IA — Predicción de Prioridad 
 
-El sistema incluye un pipeline completo de Machine Learning:
+El sistema incluye un modulo de Machine Learning:
 
 1. **Generación del dataset** (`generar_dataset.py`) — Crea 500 envíos simulados con variables como distancia, peso, volumen, tipo de envío, fragilidad, cadena de frío y saturación de ruta. La prioridad se asigna mediante una lógica de puntaje:
    * **Alta** → puntaje ≥ 7
@@ -54,5 +52,5 @@ El sistema incluye un pipeline completo de Machine Learning:
 |   Nombre  |    Rol   |      Contacto      |
 | :-------- | :------- | :------------------------- |
 | Leonardo Dávalos | Desarrollador | [LinkedIn](https://linkedin.com/in/leonardo-davalos), [GitHub](https://github.com/davaloslm) |
-| Grande Federico | Desarrolladora | [GitHub](https://github.com/Grande-f) |
-| Uribe Tafur, Jamil Alberto | Desarrolladora | [LinkedIn](https://www.linkedin.com/), [GitHub](https://github.com/Jamil-Uribe) |
+| Grande Federico | Desarrollador | [GitHub](https://github.com/Grande-f) |
+| Uribe Tafur, Jamil Alberto | Desarrollador | [LinkedIn](https://www.linkedin.com/), [GitHub](https://github.com/Jamil-Uribe) |
