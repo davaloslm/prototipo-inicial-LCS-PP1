@@ -20,7 +20,7 @@ function actualizarLista(estadoLista) {
     if (estadoLista === "sinResultados") noResultsTable.classList.remove("d-none");
 }
  
-/* function colorearEstado(estado) {
+function colorearEstado(estado) {
     const map = {
         "Pendiente":   { bg: "bg-warning",  text: "text-dark" },
         "En tránsito": { bg: "bg-primary",  text: "text-white" },
@@ -29,7 +29,7 @@ function actualizarLista(estadoLista) {
     };
     const clases = map[estado] || { bg: "bg-secondary", text: "text-white" };
     return `<span class="badge rounded-pill ${clases.bg} ${clases.text}">${estado ?? "—"}</span>`;
-} */
+}
  
 function listarResultados(envios) {
     tbody.innerHTML = "";
@@ -41,9 +41,10 @@ function listarResultados(envios) {
             <td class="small">${envio.destinatario ?? "—"}</td>
             <td class="small d-md-table-cell text-muted">${envio.direccionEntrega ?? "—"}</td>
             <td class="small d-none d-md-table-cell text-muted">${envio.fechaEsperada.substring(0,10)}</td>
-            <td><span class="badge rounded-pill bg-warning text-dark">${envio.estado}</span></td>
+            <td>${colorearEstado(envio.estado)}</td>
             <td><a href="./detalleEnvio.html?id=${envio.trackingId}" class="btn btn-sm btn-outline-secondary">Ver</a></td>
         `;
+        // <td><span class="badge rounded-pill bg-warning text-dark">${envio.estado}</span></td> Es el envio.estado viejo
         tbody.appendChild(tr);
     });
 }
