@@ -32,11 +32,14 @@ jobs:
       #4
       - name: Linter con flake8
         run: |
-          flake8 src/ml/ --max-line-length=120
+          flake8 src/backend/ml/ --max-line-length=120
 
       #5
       - name: Generar dataset de entrenamiento
         run: |
-          python src/ml/generar_dataset.py
+          python src/backend/ml/generar_dataset.py
 
-      #test verificando el ML
+      #6
+      - name: Entrenar modelo
+        run: |
+          python src/backend/ml/entrenar_modelo.py
