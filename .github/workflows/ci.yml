@@ -31,8 +31,8 @@ jobs:
 
       #4
       - name: Linter con flake8
-        run: |
-        flake8 src/backend/ml/ --max-line-length=120 --extend-ignore=E261,E302,E305,F541,W292
+          run: |
+            flake8 src/backend/ml/ --max-line-length=120 --extend-ignore=E261,E302,E305,F541,W292
 
       #5
       - name: Generar dataset de entrenamiento
