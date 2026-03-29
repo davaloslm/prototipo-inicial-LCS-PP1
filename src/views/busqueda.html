@@ -40,12 +40,12 @@
                     <div class="row g-3 align-items-end">
                         <div class="col-12 col-md-6">
                             <label class="form-label small">Buscar</label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control" id="searchInput"
                                 placeholder="Tracking ID o destinatario">
                         </div>
                         <div class="col-12 col-md-3">
                             <label class="form-label small">Estado</label>
-                            <select class="form-select">
+                            <select class="form-select" id="stateSelect">
                                 <option selected>Cualquier Estado</option>
                                 <option>Pendiente</option>
                                 <option>En tránsito</option>
@@ -68,7 +68,7 @@
                 <h6 class="fw-semibold mb-3">Resultados</h6>
 
                 <!-- Estado vacío (se muestra cuando no hay búsqueda) -->
-                <div class="card rounded-4 border-1 p-5 text-center" id="emptyState">
+                <div class="card rounded-4 border-1 p-5 text-center" id="emptyTable">
                     <i class="bi bi-search fs-1 text-muted mb-3"></i>
                     <p class="text-muted mb-0">Realizá una búsqueda para ver los resultados</p>
                 </div>
@@ -79,16 +79,16 @@
                         <table class="table table-hover align-middle mb-0">
                             <thead class="table-light">
                                 <tr>
-                                    <th class="ps-4 py-3 fw-semibold small">Tracking</th>
+                                    <th class="ps-4 py-3 fw-semibold small">Tracking ID</th>
                                     <th class="py-3 fw-semibold small">Destinatario</th>
-                                    <th class="py-3 fw-semibold small d-none d-md-table-cell">Dirección</th>
-                                    <th class="py-3 fw-semibold small d-none d-md-table-cell">Fecha</th>
+                                    <th class="py-3 fw-semibold small d-md-table-cell">Dirección</th>
+                                    <th class="py-3 fw-semibold small d-md-table-cell">Fecha</th>
                                     <th class="py-3 fw-semibold small">Estado</th>
                                     <th class="py-3 fw-semibold small"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <!-- <tr>
                                     <td class="ps-4 small fw-medium">#TRK-001</td>
                                     <td class="small">María García</td>
                                     <td class="small d-none d-md-table-cell text-muted">Calle Principal 123, Madrid</td>
@@ -111,14 +111,14 @@
                                     <td class="small d-none d-md-table-cell text-muted">20/03/2026</td>
                                     <td><span class="badge rounded-pill bg-success">Entregado</span></td>
                                     <td><a href="#" class="btn btn-sm btn-outline-secondary">Ver</a></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
                 </div>
 
                 <!-- Sin resultados (se muestra cuando la búsqueda no encuentra nada) -->
-                <div class="card rounded-4 border-1 p-5 text-center d-none" id="noResults">
+                <div class="card rounded-4 border-1 p-5 text-center d-none" id="noResultsTable">
                     <i class="bi bi-inbox fs-1 text-muted mb-3"></i>
                     <p class="text-muted mb-0">No se encontraron envíos con los criterios ingresados</p>
                 </div>
@@ -132,6 +132,7 @@
             derechos reservados</p>
     </footer>
 
+    <script src="../js/envios.js"></script>
 </body>
 
 </html>
