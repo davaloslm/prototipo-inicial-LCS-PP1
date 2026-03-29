@@ -63,19 +63,14 @@ async function buscar() {
 
         if (destinatarioOID != "") {
             if (esID(destinatarioOID)) {
-                console.log("!");
-                envios = envios.filter(envio => envio.trackingId == destinatarioOID)
-            }else{
-                console.log("!!");
-                
-                envios = envios.filter(envio => envio.destinatario == destinatarioOID)
+                envios = envios.filter(envio => envio.trackingId == destinatarioOID);
+            }else{                
+                envios = envios.filter(envio => envio.destinatario == destinatarioOID);
             }
 
             
         }else{
             if (estado != "Cualquier Estado") {
-                console.log("filtro por estado");
-                
                 envios = envios.filter(envio => envio.estado == "estado 1")
             }
         }
