@@ -42,7 +42,7 @@ function listarResultados(envios) {
             <td class="small d-md-table-cell text-muted">${envio.direccionEntrega ?? "—"}</td>
             <td class="small d-none d-md-table-cell text-muted">${envio.fechaEsperada.substring(0,10)}</td>
             <td><span class="badge rounded-pill bg-warning text-dark">${envio.estado}</span></td>
-            <td><a href="#" class="btn btn-sm btn-outline-secondary">Ver</a></td>
+            <td><a href="./detalleEnvio.html?id=${envio.trackingId}" class="btn btn-sm btn-outline-secondary">Ver</a></td>
         `;
         tbody.appendChild(tr);
     });
@@ -71,7 +71,8 @@ async function buscar() {
             
         }else{
             if (estado != "Cualquier Estado") {
-                envios = envios.filter(envio => envio.estado == "estado 1")
+                //envios = envios.filter(envio => envio.estado == "estado 1")
+                envios = envios.filter(envio => envio.estado == estado);
             }
         }
 
