@@ -1,0 +1,58 @@
+# LogiTrack 📦
+Sistema web de gestión de envíos logísticos que permite registrar, buscar y hacer seguimiento de paquetes de manera eficiente.
+En nuestra plataforma, los operadores pueden crear nuevos envíos con toda la información necesaria, buscar por Tracking ID o destinatario, y consultar el estado de cada paquete en tiempo real.
+Además, LogiTrack incorpora un módulo de inteligencia artificial que predice automáticamente la prioridad de cada envío según sus características, optimizando la toma de decisiones logísticas.
+
+## Despliegue 📦
+
+### API Predictiva:
+Documentación interactiva -> [Swagger UI](http://)
+
+_Para el despliegue del proyecto se utilizaron las siguientes herramientas:_
+
+| Mock API (envíos) | [MockAPI.io](https://mockapi.io/) |
+| ----------------- | --------------------------------- |
+| API Predictiva (Python) | [Uvicorn + FastAPI](https://fastapi.tiangolo.com/) |
+
+## Construido con 🛠️
+
+#### Frontend:
+* Lenguaje -> HTML5 + JavaScript
+* Framework CSS -> [Bootstrap 5.3](https://getbootstrap.com/)
+* Íconos -> [Material Symbols](https://fonts.google.com/icons)
+
+#### Backend:
+* Lenguaje -> Python
+* Framework -> [FastAPI](https://fastapi.tiangolo.com/)
+* Servidor -> [Uvicorn](https://www.uvicorn.org/)
+* Validación de datos -> [Pydantic](https://docs.pydantic.dev/)
+* Mock API externa -> [MockAPI.io](https://mockapi.io/)
+
+#### Machine Learning:
+* Modelo -> Random Forest Classifier
+* Librería ML -> [scikit-learn](https://scikit-learn.org/stable/user_guide.html)
+* Manipulación de datos -> [Pandas](https://pandas.pydata.org/docs/) + [NumPy](https://numpy.org/doc/stable/)
+* Exportación del modelo -> [joblib](https://joblib.readthedocs.io/)
+
+## Módulo de IA — Predicción de Prioridad 
+
+El sistema incluye un pipeline completo de Machine Learning:
+
+1. **Generación del dataset** (`generar_dataset.py`) — Crea 500 envíos simulados con variables como distancia, peso, volumen, tipo de envío, fragilidad, cadena de frío y saturación de ruta. La prioridad se asigna mediante una lógica de puntaje:
+   * **Alta** → puntaje ≥ 7
+   * **Media** → puntaje entre 3 y 6
+   * **Baja** → puntaje ≤ 2
+
+2. **Entrenamiento** (`entrenar_modelo.py`) — Entrena un clasificador Random Forest con 80% de los datos y evalúa con el 20% restante. Exporta el modelo y las columnas de entrenamiento.
+
+3. **API REST** (`main.py`) — Expone el endpoint `POST /predecir-prioridad` que recibe los datos del envío y devuelve la prioridad predicha.
+
+
+
+## Autores ✒️
+
+|   Nombre  |    Rol   |      Contacto      |
+| :-------- | :------- | :------------------------- |
+| Leonardo Dávalos | Desarrollador | [LinkedIn](https://linkedin.com/in/leonardo-davalos), [GitHub](https://github.com/davaloslm) |
+| Grande Federico | Desarrolladora | [GitHub](https://github.com/Grande-f) |
+| Uribe Tafur, Jamil Alberto | Desarrolladora | [LinkedIn](https://www.linkedin.com/), [GitHub](https://github.com/Jamil-Uribe) |
