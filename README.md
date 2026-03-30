@@ -3,10 +3,29 @@ Sistema web de gestión de envíos logísticos que permite registrar, buscar y h
 En nuestra plataforma, los operadores pueden crear nuevos envíos con toda la información necesaria, buscar por Tracking ID o destinatario, y consultar el estado de cada paquete en tiempo real.
 Además, LogiTrack incorpora un módulo de inteligencia artificial que predice automáticamente la prioridad de cada envío según sus características, optimizando la toma de decisiones logísticas.
 
-## Despliegue 📦
+## Estructura del Repositorio 📁 
 
 
-Documentación interactiva -> [Swagger UI](http://)
+```
+prototipo-inicial-LCS-PP1
+├─ README.md
+├─ docs
+│  └─ Informe (Semana 2).pdf
+├─ requirements.txt
+└─ src
+   ├─ backend
+   │  ├─ main.py
+   │  └─ ml
+   │     ├─ entrenar_modelo.py
+   │     └─ generar_dataset.py
+   ├─ img
+   │  └─ logo-logitrack.webp
+   └─ prototipo
+      ├─ busqueda.html
+      ├─ crearEnvio.html
+      ├─ index.html
+      └─ menu.html
+```
 
 ## Construido con 🛠️
 
@@ -44,7 +63,6 @@ El sistema incluye un modulo de Machine Learning:
 2. **Entrenamiento** (`entrenar_modelo.py`) — Entrena un clasificador Random Forest con 80% de los datos y evalúa con el 20% restante. Exporta el modelo y las columnas de entrenamiento.
 
 3. **API REST** (`main.py`) — Expone el endpoint `POST /predecir-prioridad` que recibe los datos del envío y devuelve la prioridad predicha.
-
 
 
 ## Autores ✒️
