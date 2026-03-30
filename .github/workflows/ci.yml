@@ -48,4 +48,4 @@ jobs:
       # 7
       - name: Ejecutar tests unitarios
         run: |
-          pytest src/tests/ -v --tb=short
+          pytest -v
