@@ -54,7 +54,13 @@ async function cargarDetalle() {
 
     } catch (error) {
         console.error(error);
-        alert("No se pudo cargar el detalle del envío.");
+        await Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Ocurrió un error al visualizar el envío",
+            showConfirmButton: false,
+            timer: 1500
+        });
         window.location.href = "./busqueda.html";
     }
 }
@@ -78,11 +84,26 @@ async function editarEnvio() {
 
         if (!response.ok) throw new Error("Error al actualizar el envío");
 
-        alert(`✅ Envío actualizado correctamente.\nEstado: ${nuevoEstado} | Prioridad: ${nuevaPrioridad}`);
+        await Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Envío actualizado correctamente.",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        window.location.href = "./busqueda.html";
 
+
+        
     } catch (error) {
         console.error(error);
-        alert("❌ No se pudo actualizar el envío. Intentá de nuevo.");
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "No se pudo actualizar el envío",
+            showConfirmButton: false,
+            timer: 1500
+        });
     } finally {
         btnEditar.disabled = false;
         btnEditar.innerHTML = "Editar";
