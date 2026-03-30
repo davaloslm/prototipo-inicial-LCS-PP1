@@ -64,6 +64,40 @@ El sistema incluye un modulo de Machine Learning:
 
 3. **API REST** (`main.py`) — Expone el endpoint `POST /predecir-prioridad` que recibe los datos del envío y devuelve la prioridad predicha.
 
+## Despliegue 📦
+
+1. Instala las dependencias de Python:
+
+```bash
+pip install -r requirements.txt
+```
+
+2. Desde la carpeta raíz del proyecto, ejecuta la API de FastAPI:
+
+```bash
+uvicorn src.backend.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+3. Abre el navegador para usar el prototipo frontend:
+
+- `src/prototipo/index.html`
+- `src/prototipo/crearEnvio.html`
+- `src/prototipo/busqueda.html`
+- `src/prototipo/menu.html`
+
+## Documentación de la API con Swagger 🧾
+
+- Accede a la UI interactiva en:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+- Alternativa en ReDoc:
+
+```text
+http://127.0.0.1:8000/redoc
+```
 
 ## Autores ✒️
 
