@@ -63,10 +63,21 @@ async function buscar() {
         envios = await response.json();
 
         if (destinatarioOID != "") {
-            if (esID(destinatarioOID)) {
-                envios = envios.filter(envio => envio.trackingId == destinatarioOID);
-            }else{                
-                envios = envios.filter(envio => envio.destinatario == destinatarioOID);
+            if (estado == "Cualquier Estado") {
+                if (esID(destinatarioOID)) {
+                    envios = envios.filter(envio => envio.trackingId == destinatarioOID);
+                }else{                
+                    envios = envios.filter(envio => envio.destinatario == destinatarioOID);
+                }
+            }else{
+                if (esID(destinatarioOID)) {
+                    envios = envios.filter(envio => envio.trackingId == destinatarioOID);
+                    envios = envios.filter(envio => envio.estado == estado)
+                }else{
+                    envios = envios.filter(envio => envio.destinatario == destinatarioOID);
+                    envios = envios.filter(envio => envio.estado == estado)
+
+                }
             }
 
             
