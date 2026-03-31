@@ -2,10 +2,7 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 import pandas as pd
 import joblib
-
 from fastapi.middleware.cors import CORSMiddleware
-
-
 
 # 1. Inicializar la aplicación FastAPI
 app = FastAPI(
