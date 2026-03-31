@@ -28,6 +28,7 @@ prototipo-inicial-LCS-PP1
    │  ├─ crearEnvio.js
    │  └─ detalleEnvio.js
    ├─ test
+   │  ├─ test_entrenar_modelo.py
    │  └─ test_generador_dataset.py
    └─ views
       ├─ busqueda.html
