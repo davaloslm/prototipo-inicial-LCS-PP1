@@ -45,7 +45,13 @@ jobs:
         run: |
           python entrenar_modelo.py
  
-      # 7
+      #7
+      - name: Levantar API
+        run: |
+          uvicorn src.backend.main:app --host 127.0.0.1 --port 8000 & 
+          sleep 5
+
+      # 8
       - name: Ejecutar tests unitarios
         run: |
           pytest -v
