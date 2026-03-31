@@ -1,2 +1,8 @@
 pandas
 numpy
+flake8
+fastapi
+uvicorn
+scikit-learn
+joblib
+pytest
