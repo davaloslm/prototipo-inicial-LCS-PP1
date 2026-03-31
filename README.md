@@ -77,19 +77,25 @@ El sistema incluye un modulo de Machine Learning:
 
 ## Despliegue 📦
 
-1. Instala las dependencias de Python:
+1. Crea un entorno virtual de Python:
+
+```bash
+python -m venv .venv
+```
+
+2. Instala las dependencias:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Desde la carpeta raíz del proyecto, ejecuta la API de FastAPI:
+3. Desde la carpeta raíz del proyecto, ejecuta la API de FastAPI:
 
 ```bash
 uvicorn src.backend.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-3. Abre el navegador para usar el prototipo frontend:
+4. Abre el navegador para usar el prototipo frontend:
 
 - `src/prototipo/index.html`
 - `src/prototipo/crearEnvio.html`
