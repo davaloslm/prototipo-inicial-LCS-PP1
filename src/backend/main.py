@@ -3,6 +3,9 @@ from pydantic import BaseModel, Field
 import pandas as pd
 import joblib
 from fastapi.middleware.cors import CORSMiddleware
+import os
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # 1. Inicializar la aplicación FastAPI
 app = FastAPI(
@@ -21,8 +24,8 @@ app.add_middleware(
 
 # 2. Cargar el modelo entrenado y las columnas esperadas al arrancar el servidor
 try:
-    modelo_rf = joblib.load('src/backend/ml/modelo_prioridad_rf.pkl')
-    columnas_entrenamiento = joblib.load('src/backend/ml/columnas_entrenamiento.pkl')
+    modelo_rf = joblib.load(os.path.join(BASE_DIR, 'ml/modelo_prioridad_rf.pkl'))
+    columnas_entrenamiento = joblib.load(os.path.join(BASE_DIR, 'ml/columnas_entrenamiento.pkl'))
     print("Modelo de IA cargado correctamente.")
 except Exception as e:
     print(f"Error al cargar el modelo: {e}. Asegúrate de haber ejecutado el entrenamiento.")
