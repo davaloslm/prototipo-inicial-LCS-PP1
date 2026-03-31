@@ -44,7 +44,6 @@ function listarResultados(envios) {
             <td>${colorearEstado(envio.estado)}</td>
             <td><a href="./detalleEnvio.html?id=${envio.trackingId}" class="btn btn-sm btn-outline-secondary">Ver</a></td>
         `;
-        // <td><span class="badge rounded-pill bg-warning text-dark">${envio.estado}</span></td> Es el envio.estado viejo
         tbody.appendChild(tr);
     });
 }
@@ -83,7 +82,6 @@ async function buscar() {
             
         }else{
             if (estado != "Cualquier Estado") {
-                //envios = envios.filter(envio => envio.estado == "estado 1")
                 envios = envios.filter(envio => envio.estado == estado);
             }
         }
