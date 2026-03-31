@@ -12,8 +12,8 @@ app = FastAPI(
 
 # 2. Cargar el modelo entrenado y las columnas esperadas al arrancar el servidor
 try:
-    modelo_rf = joblib.load('./ml/modelo_prioridad_rf.pkl')
-    columnas_entrenamiento = joblib.load('./ml/columnas_entrenamiento.pkl')
+    modelo_rf = joblib.load('src/backend/ml/modelo_prioridad_rf.pkl')
+    columnas_entrenamiento = joblib.load('src/backend/ml/columnas_entrenamiento.pkl')
     print("Modelo de IA cargado correctamente.")
 except Exception as e:
     print(f"Error al cargar el modelo: {e}. Asegúrate de haber ejecutado el entrenamiento.")
