@@ -16,6 +16,38 @@ form.addEventListener("submit", async function (e) {
         checkFrio, checkFragil,
         fechaEsperada, notasAdicionales,
     ] = inputs;
+
+    const datos = {
+        distancia_km: Math.floor(Math.random()*(1000-100+1))+100, //random simulado
+        tipo_envio: tipo.value === "Express" ? "express" : "normal",
+        peso_kg: peso.value,
+        volumen: largo.value * ancho.value * alto.value,
+        es_fragil: checkFrio.checked ? 1 : 0,
+        requiere_frio: checkFrio.checked ? 1 : 0,
+        saturacion_ruta: Math.floor(Math.random())+1 //random simulado
+    };
+
+    
+
+    let prioridad = "";
+
+    try {
+        const respuesta = await fetch("http://localhost:8000/predecir-prioridad", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(datos)
+        });
+
+        const resultado = await respuesta.json();
+
+        console.log(resultado);
+        prioridad = resultado.prioridad_asignada;
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
  
     const envio = {
         remitente:            nombreRemitente.value.trim(),
@@ -37,7 +69,7 @@ form.addEventListener("submit", async function (e) {
         fechaEsperada:        fechaEsperada.value || null,
         notasAdicionales:     notasAdicionales.value.trim(),
         estado:               "Pendiente",
-        prioridad:            "Baja"
+        prioridad:            prioridad || "Sin determinar"
     };
  
     try {

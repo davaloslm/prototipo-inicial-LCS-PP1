@@ -2,12 +2,21 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 import pandas as pd
 import joblib
+from fastapi.middleware.cors import CORSMiddleware
 
 # 1. Inicializar la aplicación FastAPI
 app = FastAPI(
     title="API Predictiva - LogiTrack",
     description="Microservicio para calcular la prioridad de envíos logísticos usando Random Forest.",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # en producción restringir
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # 2. Cargar el modelo entrenado y las columnas esperadas al arrancar el servidor
