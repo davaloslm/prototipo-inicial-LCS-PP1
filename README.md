@@ -16,15 +16,26 @@ prototipo-inicial-LCS-PP1
    ├─ backend
    │  ├─ main.py
    │  └─ ml
+   │     ├─ columnas_entrenamiento.pkl
+   │     ├─ dataset_envios.csv
    │     ├─ entrenar_modelo.py
-   │     └─ generar_dataset.py
+   │     ├─ generar_dataset.py
+   │     └─ modelo_prioridad_rf.pkl
    ├─ img
    │  └─ logo-logitrack.webp
-   └─ prototipo
+   ├─ js
+   │  ├─ buscarEnvios.js
+   │  ├─ crearEnvio.js
+   │  └─ detalleEnvio.js
+   ├─ test
+   │  └─ test_generador_dataset.py
+   └─ views
       ├─ busqueda.html
       ├─ crearEnvio.html
+      ├─ detalleEnvio.html
       ├─ index.html
       └─ menu.html
+
 ```
 
 ## Construido con 🛠️
