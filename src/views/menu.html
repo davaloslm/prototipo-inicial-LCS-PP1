@@ -13,13 +13,17 @@
 <body class="d-flex flex-column min-vh-100">
     <header>
 
-        <nav class="navbar py-6 text-bg-dark ">
-            <div class="container-fluid ">
+        <nav class="navbar py-6 text-bg-dark">
+            <div class="container-fluid">
                 <a class="navbar-brand text-light" href="#">
                     <img src="../img/logo-logitrack.webp" alt="Logo" width="80" height="60"
-                        class="d-inline-block align-text-top "></a>
-
-                <a class="btn btn-primary fs-6" href="./index.html" role="button"> Cerrar sesión</a>
+                        class="d-inline-block align-text-top">
+                </a>
+        
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-light" id="nombreUsuario"></span>
+                    <button class="btn btn-primary fs-6" id="btnCerrarSesion">Cerrar sesión</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -74,6 +78,7 @@
             derechos reservados</p>
 
     </footer>
+    <script src="../js/sesion.js"></script>
 </body>
 
 </html>
