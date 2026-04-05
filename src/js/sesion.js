@@ -21,3 +21,13 @@ document.querySelectorAll(".edicion").forEach(e => {
         e.disabled = true;
     }
 });
+
+//Mostrar card para ir a historial de registros
+const cardHistorial = document.getElementById("cardHistorial");
+if (cardHistorial) {
+    if (usuario.rol === "supervisor") {
+        cardHistorial.classList.remove("d-none");
+    } else {
+        cardHistorial.classList.add("d-none");
+    }
+}
