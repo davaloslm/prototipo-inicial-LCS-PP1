@@ -18,36 +18,31 @@ form.addEventListener("submit", async function (e) {
     ] = inputs;
 
     const datos = {
-        distancia_km: Math.floor(Math.random()*(1000-100+1))+100, //random simulado
-        tipo_envio: tipo.value === "Express" ? "express" : "normal",
-        peso_kg: peso.value,
-        volumen: largo.value * ancho.value * alto.value,
-        es_fragil: checkFrio.checked ? 1 : 0,
-        requiere_frio: checkFrio.checked ? 1 : 0,
-        saturacion_ruta: Math.floor(Math.random())+1 //random simulado
+        distancia_km:    Math.floor(Math.random() * (1000 - 100 + 1)) + 100, // random simulado
+        tipo_envio:      tipo.value === "Express" ? "express" : "normal",
+        peso_kg:         peso.value,
+        volumen:         largo.value * ancho.value * alto.value,
+        es_fragil:       checkFragil.checked ? 1 : 0,
+        requiere_frio:   checkFrio.checked ? 1 : 0,
+        saturacion_ruta: Math.floor(Math.random()) + 1 // random simulado
     };
-
-    
 
     let prioridad = "";
 
     try {
         const respuesta = await fetch("http://localhost:8000/predecir-prioridad", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(datos)
+            method:  "POST",
+            headers: { "Content-Type": "application/json" },
+            body:    JSON.stringify(datos)
         });
 
         const resultado = await respuesta.json();
-
         console.log(resultado);
         prioridad = resultado.prioridad_asignada;
 
-        } catch (error) {
-            console.error("Error:", error);
-        }
+    } catch (error) {
+        console.error("Error al predecir prioridad:", error);
+    }
  
     const envio = {
         remitente:            nombreRemitente.value.trim(),
@@ -59,11 +54,11 @@ form.addEventListener("submit", async function (e) {
         direccionEntrega:     direccionEntrega.value.trim(),
         ciudadEntrega:        ciudadEntrega.value.trim(),
         codigoPostal:         codigoPostal.value.trim(),
-        peso:                 parseFloat(peso.value) || 0,
+        peso:                 parseFloat(peso.value)  || 0,
         largo:                parseFloat(largo.value) || 0,
         ancho:                parseFloat(ancho.value) || 0,
-        alto:                 parseFloat(alto.value) || 0,
-        envioExpress:         tipo.value === "Express" ? true : false,
+        alto:                 parseFloat(alto.value)  || 0,
+        envioExpress:         tipo.value === "Express",
         frio:                 checkFrio.checked,
         fragil:               checkFragil.checked,
         fechaEsperada:        fechaEsperada.value || null,
@@ -77,36 +72,41 @@ form.addEventListener("submit", async function (e) {
         btnCrear.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Creando...`;
  
         const response = await fetch(API_URL, {
-            method: "POST",
+            method:  "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(envio)
+            body:    JSON.stringify(envio)
         });
  
         if (!response.ok) throw new Error("Error al crear el envío");
  
         const data = await response.json();
+
+        console.log(data);
+        
+        // Registrar la creación del envío usando el ID devuelto por la API
+        await crearRegistro(data.trackingId, "creacion");
+
         form.reset();
         await Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `Envío creado con éxito`,
+            position:          "top-end",
+            icon:              "success",
+            title:             "Envío creado con éxito",
             showConfirmButton: false,
-            timer: 1500
+            timer:             1500
         });
-        window.location.href = "./menu.html"; 
+        window.location.href = "./menu.html";
         
     } catch (error) {
         console.error(error);
         Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "No se pudo crear el envío",
+            position:          "top-end",
+            icon:              "error",
+            title:             "No se pudo crear el envío",
             showConfirmButton: false,
-            timer: 1500
+            timer:             1500
         });
     } finally {
-        btnCrear.disabled = false;
+        btnCrear.disabled  = false;
         btnCrear.innerHTML = "Crear Envío";
     }
 });
- 

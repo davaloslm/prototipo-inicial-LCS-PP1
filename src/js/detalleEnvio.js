@@ -7,10 +7,13 @@ if (!id) {
     window.location.href = "./busqueda.html";
 }
 
-const form = document.getElementById("formDetalle");
-const btnEditar = form.querySelector("button[type='submit']");
-const selectEstado = document.getElementById("selectEstado");
+const form          = document.getElementById("formDetalle");
+const btnEditar     = form.querySelector("button[type='submit']");
+const selectEstado  = document.getElementById("selectEstado");
 const selectPrioridad = document.getElementById("selectPrioridad");
+
+let estadoOriginal    = null;
+let prioridadOriginal = null;
 
 function formatearFecha(fechaISO) {
     if (!fechaISO) return "";
@@ -49,63 +52,71 @@ async function cargarDetalle() {
         document.getElementById("fechaEsperada").value           = formatearFecha(envio.fechaEsperada);
         document.getElementById("notasAdicionales").value        = envio.notasAdicionales ?? "";
 
-        setSelectValue(selectEstado, envio.estado);
+        setSelectValue(selectEstado,    envio.estado);
         setSelectValue(selectPrioridad, envio.prioridad);
+
+        // Guardar valores originales para detectar cambios al editar
+        estadoOriginal    = envio.estado;
+        prioridadOriginal = envio.prioridad;
 
     } catch (error) {
         console.error(error);
         await Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Ocurrió un error al visualizar el envío",
+            position:          "center",
+            icon:              "error",
+            title:             "Ocurrió un error al visualizar el envío",
             showConfirmButton: false,
-            timer: 1500
+            timer:             1500
         });
         window.location.href = "./busqueda.html";
     }
 }
 
 async function editarEnvio() {
-    const nuevoEstado = selectEstado.value;
-    const nuevaPrioridad = selectPrioridad.value;
+    const nuevoEstado     = selectEstado.value;
+    const nuevaPrioridad  = selectPrioridad.value;
 
     try {
-        btnEditar.disabled = true;
+        btnEditar.disabled  = true;
         btnEditar.innerHTML = `<span class="spinner-border spinner-border-sm me-1"></span> Guardando...`;
 
         const response = await fetch(`${API_URL}/${id}`, {
-            method: "PUT",
+            method:  "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                estado: nuevoEstado,
-                prioridad: nuevaPrioridad
-            })
+            body:    JSON.stringify({ estado: nuevoEstado, prioridad: nuevaPrioridad })
         });
 
         if (!response.ok) throw new Error("Error al actualizar el envío");
 
+        // Crear registros solo si hubo cambios efectivos
+        if (nuevoEstado !== estadoOriginal) {
+            await crearRegistro(id, "estado", estadoOriginal, nuevoEstado);
+        }
+
+        if (nuevaPrioridad !== prioridadOriginal) {
+            await crearRegistro(id, "prioridad", prioridadOriginal, nuevaPrioridad);
+        }
+
         await Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Envío actualizado correctamente.",
+            position:          "top-end",
+            icon:              "success",
+            title:             "Envío actualizado correctamente.",
             showConfirmButton: false,
-            timer: 1500
+            timer:             1500
         });
         window.location.href = "./busqueda.html";
 
-
-        
     } catch (error) {
         console.error(error);
         Swal.fire({
-            position: "top-end",
-            icon: "error",
-            title: "No se pudo actualizar el envío",
+            position:          "top-end",
+            icon:              "error",
+            title:             "No se pudo actualizar el envío",
             showConfirmButton: false,
-            timer: 1500
+            timer:             1500
         });
     } finally {
-        btnEditar.disabled = false;
+        btnEditar.disabled  = false;
         btnEditar.innerHTML = "Editar";
     }
 }
