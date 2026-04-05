@@ -59,6 +59,8 @@ async function cargarDetalle() {
         estadoOriginal    = envio.estado;
         prioridadOriginal = envio.prioridad;
 
+        await cargarHistorial();
+
     } catch (error) {
         console.error(error);
         await Swal.fire({
@@ -69,6 +71,55 @@ async function cargarDetalle() {
             timer:             1500
         });
         window.location.href = "./busqueda.html";
+    }
+}
+
+async function cargarHistorial() {
+    const tbody = document.getElementById("tbodyHistorial");
+    tbody.innerHTML = `
+        <tr>
+            <td colspan="5" class="text-center text-muted small py-3">
+                <span class="spinner-border spinner-border-sm me-1"></span> Cargando historial...
+            </td>
+        </tr>`;
+ 
+    try {
+        const response = await fetch(`${REGISTROS_URL}?envio=${id}`);
+        if (!response.ok) throw new Error("Error al obtener registros");
+ 
+        const todos = await response.json();
+        // MockAPI filtra por substring, así que hay que asegurar igualdad exacta del lado del cliente
+        const registros = todos.filter(reg => String(reg.envio) === String(id));
+ 
+        if (!registros.length) {
+            tbody.innerHTML = `
+                <tr>
+                    <td colspan="5" class="text-center text-muted small py-3">Sin registros de cambios</td>
+                </tr>`;
+            return;
+        }
+ 
+        tbody.innerHTML = registros.map((reg, index) => {
+            const fecha = reg.createdAt ? new Date(reg.createdAt) : null;
+            const fechaStr = fecha ? fecha.toLocaleDateString("es-AR") : "—";
+            const horaStr  = fecha ? fecha.toLocaleTimeString("es-AR") : "—";
+ 
+            return `
+                <tr>
+                    <td class="ps-4 small fw-medium">${String(reg.id).padStart(3, "0")}</td>
+                    <td class="small">${reg.tipo ?? "—"}</td>
+                    <td class="small">${fechaStr}</td>
+                    <td class="small">${horaStr}</td>
+                    <td class="small">${reg.usuario ?? "—"}</td>
+                </tr>`;
+        }).join("");
+ 
+    } catch (error) {
+        console.error("Error al cargar historial:", error);
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="5" class="text-center text-danger small py-3">No se pudo cargar el historial</td>
+            </tr>`;
     }
 }
 
