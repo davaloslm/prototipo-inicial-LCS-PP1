@@ -110,3 +110,7 @@ form.addEventListener("submit", async function (e) {
         btnCrear.innerHTML = "Crear Envío";
     }
 });
+
+document.getElementById('flexCheckChecked').addEventListener('change', function() {
+    document.getElementById('btnCrearEnvio').disabled = !this.checked;
+});
