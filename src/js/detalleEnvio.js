@@ -139,13 +139,24 @@ async function editarEnvio() {
 
         if (!response.ok) throw new Error("Error al actualizar el envío");
 
-        // Crear registros solo si hubo cambios efectivos
-        if (nuevoEstado !== estadoOriginal) {
-            await crearRegistro(id, "estado", estadoOriginal, nuevoEstado);
-        }
+        if (nuevoEstado === estadoOriginal && nuevaPrioridad === prioridadOriginal) {
+            console.log("asdwa");
+            
+            Swal.fire({
+            position:          "top-end",
+            icon:              "error",
+            title:             "No se ha modificado ningún valor",
+            showConfirmButton: false,
+            timer:             2000
+        });
+        }else{
+            // Crear registros solo si hubo cambios efectivos
+            if (nuevoEstado !== estadoOriginal) {
+                await crearRegistro(id, "estado", estadoOriginal, nuevoEstado);
+            }
 
-        if (nuevaPrioridad !== prioridadOriginal) {
-            await crearRegistro(id, "prioridad", prioridadOriginal, nuevaPrioridad);
+            if (nuevaPrioridad !== prioridadOriginal) {
+                await crearRegistro(id, "prioridad", prioridadOriginal, nuevaPrioridad);
         }
 
         await Swal.fire({
@@ -156,6 +167,7 @@ async function editarEnvio() {
             timer:             1500
         });
         window.location.href = "./busqueda.html";
+        } 
 
     } catch (error) {
         console.error(error);
