@@ -2,27 +2,21 @@ const API_URL = "https://69c692f1f272266f3eaccdd0.mockapi.io/usuarios";
 
 const usuarios = [  
     {
-        nombre: "operador1",
-        email: "operador1@logitrack.com",
+        nombre: "Leonardo Dávalos",
+        email: "ldavalos@logitrack.com",
         contrasenia: "1234",
         rol: "operador"
     },
     {
-        nombre: "operador2",
-        email: "operador2@logitrack.com",
-        contrasenia: "2345",
+        nombre: "Federico Grande",
+        email: "fgrande@logitrack.com",
+        contrasenia: "1234",
         rol: "operador"
     },
     {
-        nombre: "supervisor1",
-        email: "supervisor1@logitrack.com",
+        nombre: "Jamil Uribe",
+        email: "juribe@logitrack.com",
         contrasenia: "1234",
-        rol: "supervisor"
-    },
-    {
-        nombre: "supervisor2",
-        email: "supervisor2@logitrack.com",
-        contrasenia: "2345",
         rol: "supervisor"
     }
 ];
