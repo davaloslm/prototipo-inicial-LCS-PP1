@@ -22,6 +22,17 @@ document.querySelectorAll(".edicion").forEach(e => {
     }
 });
 
+//Ocultar botones de edicion
+const divBotones = document.getElementById("botonesEdicion")
+if (divBotones) {
+    if (usuario.rol === "supervisor") {
+        divBotones.classList.remove("d-none");
+    } else {
+        divBotones.classList.add("d-none");
+    }
+}
+
+
 //Mostrar card para ir a historial de registros
 const cardHistorial = document.getElementById("cardHistorial");
 if (cardHistorial) {
