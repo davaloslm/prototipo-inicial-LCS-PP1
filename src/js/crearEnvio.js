@@ -88,7 +88,7 @@ form.addEventListener("submit", async function (e) {
 
         form.reset();
         await Swal.fire({
-            position:          "top-end",
+            position:          "center",
             icon:              "success",
             title:             "Envío creado con éxito",
             showConfirmButton: false,
@@ -99,7 +99,7 @@ form.addEventListener("submit", async function (e) {
     } catch (error) {
         console.error(error);
         Swal.fire({
-            position:          "top-end",
+            position:          "center",
             icon:              "error",
             title:             "No se pudo crear el envío",
             showConfirmButton: false,

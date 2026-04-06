@@ -143,7 +143,7 @@ async function editarEnvio() {
             console.log("asdwa");
             
             Swal.fire({
-            position:          "top-end",
+            position:          "center",
             icon:              "error",
             title:             "No se ha modificado ningún valor",
             showConfirmButton: false,
@@ -160,7 +160,7 @@ async function editarEnvio() {
         }
 
         await Swal.fire({
-            position:          "top-end",
+            position:          "center",
             icon:              "success",
             title:             "Envío actualizado correctamente.",
             showConfirmButton: false,
@@ -172,7 +172,7 @@ async function editarEnvio() {
     } catch (error) {
         console.error(error);
         Swal.fire({
-            position:          "top-end",
+            position:          "center",
             icon:              "error",
             title:             "No se pudo actualizar el envío",
             showConfirmButton: false,
