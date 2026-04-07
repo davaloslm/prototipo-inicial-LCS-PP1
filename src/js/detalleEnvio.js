@@ -15,11 +15,6 @@ const selectPrioridad = document.getElementById("selectPrioridad");
 let estadoOriginal    = null;
 let prioridadOriginal = null;
 
-function formatearFecha(fechaISO) {
-    if (!fechaISO) return "";
-    return fechaISO.substring(0, 10);
-}
-
 function setSelectValue(selectEl, value) {
     const option = Array.from(selectEl.options).find(o => o.value === value);
     if (option) selectEl.value = value;
@@ -49,7 +44,6 @@ async function cargarDetalle() {
         document.getElementById("tipo").value                    = envio.envioExpress ? "Express" : "Normal";
         document.getElementById("checkFrio").checked             = envio.frio ?? false;
         document.getElementById("checkFragil").checked           = envio.fragil ?? false;
-        document.getElementById("fechaEsperada").value           = formatearFecha(envio.fechaEsperada);
         document.getElementById("notasAdicionales").value        = envio.notasAdicionales ?? "";
 
         setSelectValue(selectEstado,    envio.estado);
