@@ -4,7 +4,17 @@ const btnCrear = form.querySelector("button[type='submit']");
  
 form.addEventListener("submit", async function (e) {
     e.preventDefault();
- 
+
+    if (!pristine.validate()) {
+        Swal.fire({
+            icon: "warning",
+            title: "Formulario inválido",
+            text: "Por favor corregí los campos marcados antes de continuar",
+            confirmButtonText: "OK"
+    });
+    return;
+}
+
     const inputs = form.querySelectorAll("input, select, textarea");
  
     const [
@@ -14,7 +24,7 @@ form.addEventListener("submit", async function (e) {
         peso, largo, ancho, alto,
         tipo,
         checkFrio, checkFragil,
-        fechaEsperada, notasAdicionales,
+         notasAdicionales,
     ] = inputs;
 
     const datos = {
@@ -61,7 +71,6 @@ form.addEventListener("submit", async function (e) {
         envioExpress:         tipo.value === "Express",
         frio:                 checkFrio.checked,
         fragil:               checkFragil.checked,
-        fechaEsperada:        fechaEsperada.value || null,
         notasAdicionales:     notasAdicionales.value.trim(),
         estado:               "Pendiente",
         prioridad:            prioridad || "Sin determinar"
