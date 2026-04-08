@@ -11,14 +11,12 @@
 
 <body class="d-flex flex-column min-vh-100">
     <header>
-
         <nav class="navbar py-6 text-bg-dark ">
             <div class="container-fluid ">
- <a class="navbar-brand text-light" href="#">
+                <a class="navbar-brand text-light" href="#">
                     <img src="../img/logo-logitrack.webp" alt="Logo" width="80" height="60"
-                        class="d-inline-block align-text-top "></a>
-
-                <!-- <a class="btn btn-primary fs-6" href="#reportarProblema" role="button"> Cerrar sesión</a> -->
+                        class="d-inline-block align-text-top ">
+                </a>
             </div>
         </nav>
     </header>
@@ -29,24 +27,28 @@
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email</label>
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Contraseña</label>
                         <input type="password" class="form-control" id="exampleInputPassword1">
                     </div>
-                    <a class="btn btn-primary" href="./menu.html">Ingresar</a>
 
+                    <!-- Mensaje de error -->
+                    <div id="mensajeError" class="alert alert-danger d-none mb-3" role="alert">
+                        Email o contraseña incorrectos.
+                    </div>
+
+                    <button type="button" class="btn btn-primary" id="btnIngresar">Ingresar</button>
                 </form>
             </div>
-
         </div>
-
     </main>
     <footer class="border-top mt-auto bg-dark">
         <p class="text-center my-4 text-light">© 2026 Sistema Federal de Gestión de Logística y Distribución. Todos los
             derechos reservados</p>
     </footer>
+
+    <script src="../js/validarLogin.js"></script>
 </body>
 
 </html>

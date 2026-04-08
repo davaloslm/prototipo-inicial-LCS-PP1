@@ -13,13 +13,17 @@
 <body class="d-flex flex-column min-vh-100">
     <header>
 
-        <nav class="navbar py-6 text-bg-dark ">
-            <div class="container-fluid ">
+        <nav class="navbar py-6 text-bg-dark">
+            <div class="container-fluid">
                 <a class="navbar-brand text-light" href="#">
                     <img src="../img/logo-logitrack.webp" alt="Logo" width="80" height="60"
-                        class="d-inline-block align-text-top "></a>
-
-                <a class="btn btn-primary fs-6" href="./index.html" role="button"> Cerrar sesión</a>
+                        class="d-inline-block align-text-top">
+                </a>
+        
+                <div class="d-flex align-items-center gap-3">
+                    <span class="text-light" id="nombreUsuario"></span>
+                    <button class="btn btn-primary fs-6" id="btnCerrarSesion">Cerrar sesión</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -64,6 +68,23 @@
                     
                 </div>
 
+                <!-- Historial de Cambios (solo supervisores) -->
+                <div class="col-12 col-md-5 col-lg-4 col-xl-3 d-none" id="cardHistorial">
+                    <a href="./historialDeCambios.html" class="text-decoration-none">
+                        <div class="card border-1 rounded-4 p-4 text-center h-100" style="cursor: pointer;">
+                            <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                                <div class="bg-secondary-subtle rounded-3 p-3 mb-3">
+                                    <span class="material-symbols-outlined">
+                                        history
+                                    </span>
+                                </div>
+                                <h5 class="card-title fw-bold"> Ver historial de cambios</h5>
+                                <p class="card-text text-muted">Consulta todos los cambios realizados sobre los envíos</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
             </div>
         </div>
     </main>
@@ -74,6 +95,7 @@
             derechos reservados</p>
 
     </footer>
+    <script src="../js/sesion.js"></script>
 </body>
 
 </html>

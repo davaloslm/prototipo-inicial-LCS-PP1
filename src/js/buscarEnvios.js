@@ -40,7 +40,6 @@ function listarResultados(envios) {
             <td class="ps-4 small fw-medium">#${envio.trackingId ?? "—"}</td>
             <td class="small">${envio.destinatario ?? "—"}</td>
             <td class="small d-md-table-cell text-muted">${envio.direccionEntrega ?? "—"}</td>
-            <td class="small d-none d-md-table-cell text-muted">${envio.fechaEsperada.substring(0,10)}</td>
             <td>${colorearEstado(envio.estado)}</td>
             <td><a href="./detalleEnvio.html?id=${envio.trackingId}" class="btn btn-sm btn-outline-secondary">Ver</a></td>
         `;
